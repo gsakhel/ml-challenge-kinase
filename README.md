@@ -34,11 +34,7 @@ The Jupyter notebook will show you how to manipulate the data.
 
 ## Problem statement
 
-1. Please start by adapting the Chemprop model from the deep learning-for-chemistry literature.
-
-You can find the model here: https://github.com/chemprop/chemprop
-
-2. Please implement one other machine learning model that predicts pKi as a function of molecular structure.
+Please implement a deep learning model on text or graphs that predicts pKi as a function of molecular structure.
 
 **Please code this model yourself in the machine learning framework of your choice. Please don't clone an existing ML-for-chemistry model implementation.**
 
