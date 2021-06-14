@@ -34,7 +34,7 @@ The Jupyter notebook will show you how to manipulate the data.
 
 ## Problem statement
 
-Please implement a deep learning model on text or graphs that predicts pKi as a function of molecular structure.
+Please implement a deep learning model on text or graphs that predicts pKi as a function of molecular structure. For text-based models, a tokenizer is provided in the notebook.
 
 **Please code this model yourself in the machine learning framework of your choice. Please don't clone an existing ML-for-chemistry model implementation.**
 
