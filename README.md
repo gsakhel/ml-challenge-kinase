@@ -26,7 +26,7 @@ For example, here’s a recent table from a paper from Pfizer summarizing medici
 
 In this problem, you are given a dataset of measured activity against 4 related proteins: JAK1, JAK2, JAK3 and TYK2. There are two related types of measurements: pIC50 and pKi – in both cases, a higher number suggest stronger binding. 
 
-*The goal is to develop a model that can predict the pKi of a given compound against JAK1, JAK2, JAK3 and TYK2.*
+**The goal is to develop a model that can predict the pKi of a given compound against JAK1, JAK2, JAK3 and TYK2.**
 
 ## Data
 
@@ -34,13 +34,9 @@ The Jupyter notebook will show you how to manipulate the data.
 
 ## Problem statement
 
-1. Please start by adapting the Chemprop model from the deep learning-for-chemistry literature.
+Please implement a deep learning model on text or graphs that predicts pKi as a function of molecular structure. For text-based models, a tokenizer is provided in the notebook.
 
-You can find the model here: https://github.com/chemprop/chemprop
-
-2. Please implement one other machine learning model that predicts pKi as a function of molecular structure.
-
-*Please code this model yourself in the machine learning framework of your choice. Please don't clone an existing ML-for-chemistry model implementation.*
+**Please code this model yourself in the machine learning framework of your choice. Please don't clone an existing ML-for-chemistry model implementation.**
 
 Please create a private repository that you share with us for submitting your solution.
 
