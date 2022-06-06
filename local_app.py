@@ -5,8 +5,10 @@ import pandas as pd
 import numpy as np
 import torch
 import pickle
+from rdkit.Chem.Draw import rdMolDraw2D
 
 app  = Flask(__name__, template_folder='templates')
+
 
 @app.route('/')
 def index():
@@ -16,9 +18,9 @@ def index():
 def predictor(input_smile):
     # Load files
     chem_calc = Calculator(descriptors, ignore_3D=True)
-    model_columns = pd.read_csv('model_columns.csv').columns
-    scaler = pickle.load(open("scaler.pkl", "rb"))
-    model = torch.jit.load('model_scripted.pt')
+    model_columns = pd.read_csv('model_assets/model_columns.csv').columns
+    scaler = pickle.load(open("model_assets/scaler.pkl", "rb"))
+    model = torch.jit.load('model_assets/model_scripted.pt')
 
     # Prepare input
     mol = Chem.MolFromSmiles(input_smile)
@@ -37,12 +39,31 @@ def predictor(input_smile):
     
     return result
 
+def draw_molecule(mol, molSize=(450, 150), kekulize=True):
+    molecule = Chem.MolFromSmiles(mol)
+    if kekulize:
+        try:
+            Chem.Kekulize(molecule)
+        except:
+            molecule = Chem.Mol(mol.ToBinary())
+    if not molecule.GetNumConformers():
+        Chem.rdDepictor.Compute2DCoords(molecule)
+    
+    painter = rdMolDraw2D.MolDraw2DSVG(*molSize)
+    painter.DrawMolecule(molecule)
+    painter.FinishDrawing()
+    svg = painter.GetDrawingText().replace('svg:', '')
+    return svg
+
+
 @app.route('/result', methods = ['POST'])
 def result():
     if request.method == 'POST':
         input = request.form.to_dict()['smile']
         result = torch.flatten(predictor(input))
-    return render_template("result.html", jak1=result[0].item(), jak2=result[1].item(), jak3=result[2].item(), tyk2=result[3].item())
+        drawing = draw_molecule(input)
+        print("SUCCESS!")
+    return render_template("result.html", jak1=result[0].item(), jak2=result[1].item(), jak3=result[2].item(), tyk2=result[3].item(), drawing=Markup(drawing))
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5001)
