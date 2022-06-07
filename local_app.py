@@ -53,13 +53,13 @@ def draw_molecule(mol, molSize=(450, 150), kekulize=True):
     """Draw a molecule in SVG format
 
     Args:
-    mol:    molecule of interest in SMILE format
+    mol:       molecule of interest in SMILE format
     molSize:   size of output SVG
-    kekulize: 
+    kekulize:  make double bonds explicit
 
     Output:
-    svg:   SVG of our drawn molecule
-    
+    svg:       SVG of our drawn molecule
+
     """
 
     molecule = Chem.MolFromSmiles(mol)
