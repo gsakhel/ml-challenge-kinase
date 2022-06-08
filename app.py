@@ -16,6 +16,16 @@ def index():
 
     
 def predictor(input_smile):
+    """Predicts pKi's for 4 inhibitors given SMILE
+
+    Args:
+    input_smile:  molecular structure in SMILE format
+
+    Output:
+    result:       tensor with pKi's
+    
+    """
+
     # Load files
     chem_calc = Calculator(descriptors, ignore_3D=True)
     model_columns = pd.read_csv('model_assets/model_columns.csv').columns
@@ -40,6 +50,18 @@ def predictor(input_smile):
     return result
 
 def draw_molecule(mol, molSize=(450, 150), kekulize=True):
+    """Draw a molecule in SVG format
+
+    Args:
+    mol:       molecule of interest in SMILE format
+    molSize:   size of output SVG
+    kekulize:  make double bonds explicit
+
+    Output:
+    svg:       SVG of our drawn molecule
+
+    """
+    
     molecule = Chem.MolFromSmiles(mol)
     if kekulize:
         try:
